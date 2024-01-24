@@ -1,7 +1,9 @@
 // Import required packages
 const express = require('express');
 const http = require('http');
-const hbs = require('hbs');
+const fs = require('fs');
+const path = require('path');
+const bodyParser = require('body-parser');
 
 // Create Express instance
 const app = express();
@@ -10,14 +12,16 @@ const app = express();
 const port = 3000;
 app.set('port', port);
 
-// Set up Express to handle JSON, URL encoding and static files
+// Set up Express to handle JSON, URL encoding, POST bodies and static files
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 
-// Declare routers
-const indexRouter = require('./routes/route-mindreader');
-app.use('/', indexRouter);
+// Register all files in the /routes directory as Express routes
+const routesDir = path.join(__dirname, 'routes');
+fs.readdirSync(routesDir).forEach(route => require(path.join(routesDir, route))(app));
 
 // Create HTTP server and plug it with the Express instance
 const server = http.createServer(app);

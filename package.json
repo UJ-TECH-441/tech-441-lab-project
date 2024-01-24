@@ -17,12 +17,10 @@
 	"homepage": "https://github.com/UJ-TECH-441/tech-441-project-template#readme",
 	"dependencies": {
 		"@faker-js/faker": "^8.3.1",
-		"express": "~4.16.1",
-		"express-async-handler": "^1.2.0",
-		"hbs": "^4.2.0"
+		"body-parser": "^1.20.2",
+		"express": "~4.16.1"
 	},
 	"devDependencies": {
-		"debug": "^4.3.4",
 		"nodemon": "^3.0.1"
 	}
 }
