@@ -2,7 +2,7 @@ const express = require('express');
 const handler = require('../handlers/handler-mindreader');
 
 module.exports = app => {
-	app.get('/predictions', async (req, res, next) => {
+	app.get('/predictions', (req, res, next) => {
 		try {
 			const messages = handler.makePredictions();
 			res.json({ messages });
@@ -13,7 +13,7 @@ module.exports = app => {
 		}
 	});
 
-	app.post('/rating', async (req, res, next) => {
+	app.post('/rating', (req, res, next) => {
 		try {
 			if (!req.body.star) return res.sendStatus(400);
 			const data = handler.rating(req.body.star);
