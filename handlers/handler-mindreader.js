@@ -6,7 +6,7 @@ let votes = 0;
 let totalStars = 0;
 
 // The read() function will be called by the index.js route
-module.exports.read = () =>
+module.exports.makePredictions = () =>
 	[
 		// Create some horribly wrong predictions
 		{
@@ -23,15 +23,12 @@ module.exports.read = () =>
 		}
 	];
 
-// The rating() function will be called by the index.js route
-// It expects one parameter called stars
-module.exports.rating = stars => {
+module.exports.rating = star => {
 	// Stars will be received as a string parameter, so convert it to a number
-	stars = parseInt(stars);
-	console.log(`Rating of ${stars} received`);
+	star = parseInt(star);
 	// Increment the vote total and overall total of stars
 	votes++;
-	totalStars += stars;
+	totalStars += star;
 	// Return JSON object
 	return {
 		votes, // Total # of votes

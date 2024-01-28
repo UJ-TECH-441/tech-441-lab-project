@@ -15,8 +15,8 @@ body {
 	padding: 50px;
 }
 
-a {
-  color: #00B7FF;
+a, a:active, a:visited, a:hover {
+	color: #0098ea;
 }
 
 h1, h2, h3 {
@@ -39,11 +39,15 @@ h3 {
 	font-weight: 700;
 }
 
+.hide {
+	display: none;
+}
+
 #content {
 	background-color: white;
 	max-width: 900px;
 	margin: auto;
-	padding: 50px;
+	padding: 30px 50px;
 	border: solid 1px gray;
 	filter: drop-shadow(15px 15px #ccc);
 }
@@ -75,8 +79,16 @@ h3 {
 	width: 30px;
 }
 
+#try-again {
+	display: none;
+}
+
+#try-again > div {
+	margin-top: 20px;
+}
+
 #error {
 	display: none;
-	font-color: #cc0000;
+	color: #cc0000;
 	font-weight: 700;
 }

@@ -5,19 +5,25 @@ $(document).ready(function() {
 });
 
 const read = () => {
-	fetch(`/readmymind`)
-	.then(resp => resp.json())
-	.then(result => {
-		// Result will be a JSON object
-		const items = result.messages.map(message =>
-			`<li>${message.prediction} <span class="bold">${message.value}<span</li>`
-		);
-		$('#results').html(`<ul>${items.join('\n')}</ul>`);
-	})
-	.catch(err => {
-		console.error(err);
-		$('#error').html('Error');
-		$('#error').show();
-	});
-
+	$('#results').hide();
+	$('#try-again').hide();
+	fetch('/predictions')
+		.then(res => {
+			if (!res.ok) throw new Error(res.statusText);
+			return res.json();
+		})
+		.then(result => {
+			// Result will be a JSON object
+			const items = result.messages.map(message =>
+				`<li>${message.prediction} <span class="bold">${message.value}<span</li>`
+			);
+			$('#results').html(`<ul>${items.join('\n')}</ul>`);
+			$('#results').show();
+			$('#try-again').show();
+		})
+		.catch(err => {
+			console.error(err);
+			$('#error').html('Error');
+			$('#error').show();
+		});
 };
